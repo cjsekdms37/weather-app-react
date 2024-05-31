@@ -139,7 +139,8 @@ export default function Search() {
           </a>{" "}
           and is open-sourced on{" "}
           <a href="https://github.com/cjsekdms37/weather-app-react">GitHub</a>{" "}
-          and hosten on <a href="/">Netlify</a>.
+          and hosten on{" "}
+          <a href="https://weather-app-react-djcm.netlify.app/">Netlify</a>.
         </p>
       </footer>
     </div>
