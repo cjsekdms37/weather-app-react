@@ -75,7 +75,7 @@ export default function Search() {
           </ul>
         </div>
         <div className="cityTemperature">
-          <img className="icon" src={iconUrl} alt="weather icon" />
+          <img className="icon" src={iconUrl} alt="☀️" />
           <span className="temperature">{temperature}</span>{" "}
           <span className="tempUnit">℉</span>
         </div>
