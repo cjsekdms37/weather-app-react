@@ -137,8 +137,9 @@ export default function Search() {
           <a href="https://www.linkedin.com/in/djcmichaels/">
             Jenny D. Michaels
           </a>{" "}
-          and is open-sourced on <a href="/">GitHub</a> and hosten on{" "}
-          <a href="/">Netlify</a>.
+          and is open-sourced on{" "}
+          <a href="https://github.com/cjsekdms37/weather-app-react">GitHub</a>{" "}
+          and hosten on <a href="/">Netlify</a>.
         </p>
       </footer>
     </div>
