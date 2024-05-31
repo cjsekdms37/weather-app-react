@@ -1,5 +1,12 @@
+html {
+  background-color: rgba(249, 240, 198, 0.3);
+}
+
 .App {
   text-align: center;
+  max-width: 800px;
+  margin: 100px auto;
+  box-shadow: 0 30px 50px #41326414;
 }
 
 .App-logo {
@@ -35,4 +42,159 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.App .container {
+  background-color: white;
+  border-radius: 16px;
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.App ul.forecast {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0;
+  margin-top: 0;
+}
+
+.App ul.forecast li {
+  text-align: center;
+}
+
+.App .forecastContainer {
+  margin: 40px 5px;
+}
+
+.App li {
+  list-style: none;
+  margin-bottom: 5px;
+}
+
+.App ul {
+  padding: 0;
+  text-align: initial;
+}
+
+.App .cityInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.App .cityTemperature {
+  align-self: center;
+}
+
+.App .searchInput {
+  height: 50px;
+  padding: 15px 20px;
+  border: none;
+  background: rgba(169, 213, 228, 0.3);
+  border-radius: 6px;
+  width: 100%;
+  font-size: 18px;
+}
+
+.App .submitButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  width: 30%;
+  border: none;
+  border-radius: 6px;
+  background-color: rgba(148, 204, 222, 1);
+  color: white;
+  font-weight: 700;
+}
+
+.App form {
+  display: flex;
+  gap: 10px;
+  justify-content: stretch;
+  margin-bottom: 30px;
+}
+
+.App h1 {
+  margin: 20px auto 10px auto;
+  text-align: initial;
+  font-size: 38px;
+}
+
+.App .temperature {
+  font-size: 80px;
+  font-weight: 700;
+}
+
+.App .tempUnit {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1;
+  position: relative;
+  top: -34px;
+}
+
+.App footer {
+  margin-top: 40px;
+  color: #27214266;
+  font-size: 14px;
+}
+
+.App p {
+  margin: 0;
+}
+
+.App .forecastDay {
+  font-size: 16px;
+  line-height: 20px;
+  opacity: 0.6;
+}
+
+.App .forecastIcon {
+  margin: 38px;
+}
+
+.App .maxTemp {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.App .minTemp {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.5;
+  opacity: 0.6;
+  padding-left: 6px;
+}
+
+.App .accentColor {
+  color: #47a7c6;
+}
+
+.App a {
+  color: #47a7c6;
+}
+
+.App hr {
+  opacity: 0.1;
+}
+
+.App input:focus {
+  outline: 3px solid #47a7c6;
+}
+
+.App .cityTemperature .icon {
+  font-size: 60px;
+}
+
+.App .forecastContainer .forecastIcon {
+  font-size: 60px;
+}
+
+.App img.icon {
+  position: relative;
+  top: 20px;
 }
