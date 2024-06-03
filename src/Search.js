@@ -4,12 +4,11 @@ import axios from "axios";
 
 export default function Search(props) {
   const [city, setCity] = useState(props.city);
-  const [showCity, setShowCity] = useState("");
-  const [temperature, setTemperature] = useState("");
-  const [humidity, setHumidity] = useState("");
-  const [wind, setWind] = useState("");
-  const [description, setDescription] = useState("");
-  const [icon, setIcon] = useState("");
+  const [temperature, setTemperature] = useState("65");
+  const [humidity, setHumidity] = useState("20");
+  const [wind, setWind] = useState("2");
+  const [description, setDescription] = useState("sunny");
+  const [icon, setIcon] = useState("☀️");
 
   let iconUrl = `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${icon}.png`;
 
@@ -26,7 +25,7 @@ export default function Search(props) {
   function showTheCity(response) {
     let longitude = response.data.coordinates.longitude;
     let latitude = response.data.coordinates.latitude;
-    setShowCity(response.data.city);
+    setCity(response.data.city);
     setTemperature(Math.round(response.data.temperature.current));
     setHumidity(response.data.temperature.humidity);
     setWind(response.data.wind.speed);
@@ -49,7 +48,7 @@ export default function Search(props) {
   return (
     <div>
       <div className="Search">
-        <form onSubmit={handleSubmit}>
+        <form className="searchForm" onSubmit={handleSubmit}>
           <input
             type="search"
             placeholder="Enter a city..."
@@ -63,7 +62,7 @@ export default function Search(props) {
       <hr />
       <div className="cityInfo">
         <div>
-          <h1>{showCity}</h1>
+          <h1>{city}</h1>
           <ul>
             <li>
               Wednesday 16:18, <span>{description}</span>
