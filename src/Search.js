@@ -4,11 +4,12 @@ import axios from "axios";
 
 export default function Search(props) {
   const [city, setCity] = useState(props.city);
-  const [temperature, setTemperature] = useState("65");
+  const [showCity, setShowCity] = useState(props.city);
+  const [temperature, setTemperature] = useState("63");
   const [humidity, setHumidity] = useState("20");
   const [wind, setWind] = useState("2");
   const [description, setDescription] = useState("sunny");
-  const [icon, setIcon] = useState("☀️");
+  const [icon, setIcon] = useState("");
 
   let iconUrl = `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${icon}.png`;
 
@@ -25,7 +26,7 @@ export default function Search(props) {
   function showTheCity(response) {
     let longitude = response.data.coordinates.longitude;
     let latitude = response.data.coordinates.latitude;
-    setCity(response.data.city);
+    setShowCity(response.data.city);
     setTemperature(Math.round(response.data.temperature.current));
     setHumidity(response.data.temperature.humidity);
     setWind(response.data.wind.speed);
@@ -62,7 +63,7 @@ export default function Search(props) {
       <hr />
       <div className="cityInfo">
         <div>
-          <h1>{city}</h1>
+          <h1>{showCity}</h1>
           <ul>
             <li>
               Wednesday 16:18, <span>{description}</span>
