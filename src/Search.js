@@ -3,15 +3,10 @@ import "./App.css";
 import axios from "axios";
 
 export default function Search(props) {
-  const [city, setCity] = useState(props.city);
-  const [showCity, setShowCity] = useState(props.city);
-  const [temperature, setTemperature] = useState("63");
-  const [humidity, setHumidity] = useState("20");
-  const [wind, setWind] = useState("2");
-  const [description, setDescription] = useState("sunny");
-  const [icon, setIcon] = useState("");
+  const [weatherData, setWeatherData] = useState({ ready: false });
+  const [city, setCity] = useState("");
 
-  let iconUrl = `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${icon}.png`;
+  let iconUrl = `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${weatherData.icon}.png`;
 
   function showTheForecast(response) {
     let forecast = response.data.daily;
@@ -26,12 +21,16 @@ export default function Search(props) {
   function showTheCity(response) {
     let longitude = response.data.coordinates.longitude;
     let latitude = response.data.coordinates.latitude;
-    setShowCity(response.data.city);
-    setTemperature(Math.round(response.data.temperature.current));
-    setHumidity(response.data.temperature.humidity);
-    setWind(response.data.wind.speed);
-    setDescription(response.data.condition.description);
-    setIcon(response.data.condition.icon);
+    setWeatherData({
+      ready: true,
+      temperature: Math.round(response.data.temperature.current),
+      humidity: response.data.temperature.humidity,
+      wind: response.data.wind.speed,
+      description: response.data.condition.description,
+      icon: response.data.condition.icon,
+      city: response.data.city,
+    });
+
     handleForecast(longitude, latitude);
   }
 
@@ -46,103 +45,113 @@ export default function Search(props) {
     return setCity(event.target.value);
   }
 
-  return (
-    <div>
-      <div className="Search">
-        <form className="searchForm" onSubmit={handleSubmit}>
-          <input
-            type="search"
-            placeholder="Enter a city..."
-            className="searchInput"
-            onChange={updateCity}
-            required
-          />
-          <input type="submit" value="Search" className="submitButton" />
-        </form>
-      </div>
-      <hr />
-      <div className="cityInfo">
-        <div>
-          <h1>{showCity}</h1>
-          <ul>
-            <li>
-              Wednesday 16:18, <span>{description}</span>
-            </li>
-            <li>
-              Humidity: <span className="accentColor">{humidity}%</span> Wind:{" "}
-              <span className="accentColor">{wind} mi/h</span>
-            </li>
-          </ul>
+  if (weatherData.ready) {
+    return (
+      <div>
+        <div className="Search">
+          <form className="searchForm" onSubmit={handleSubmit}>
+            <input
+              type="search"
+              placeholder="Enter a city..."
+              className="searchInput"
+              onChange={updateCity}
+              autoFocus="on"
+              required
+            />
+            <input type="submit" value="Search" className="submitButton" />
+          </form>
         </div>
-        <div className="cityTemperature">
-          <img className="icon" src={iconUrl} alt="☀️" />
-          <span className="temperature">{temperature}</span>{" "}
-          <span className="tempUnit">℉</span>
+        <hr />
+        <div className="cityInfo">
+          <div>
+            <h1>{weatherData.city}</h1>
+            <ul>
+              <li>
+                Wednesday 16:18, <span>{weatherData.description}</span>
+              </li>
+              <li>
+                Humidity:{" "}
+                <span className="accentColor">{weatherData.humidity}%</span>{" "}
+                Wind:{" "}
+                <span className="accentColor">{weatherData.wind} mi/h</span>
+              </li>
+            </ul>
+          </div>
+          <div className="cityTemperature">
+            <img className="icon" src={iconUrl} alt="☀️" />
+            <span className="temperature">{weatherData.temperature}</span>{" "}
+            <span className="tempUnit">℉</span>
+          </div>
         </div>
-      </div>
-      <div className="Forecast">
-        <div className="forecastContainer">
-          <ul className="forecast">
-            <li>
-              <div className="forecastDay">Wed</div>
-              <div className="forecastIcon">🌧️</div>
-              <div className="forecastTemperature">
-                <span className="maxTemp accentColor">26°</span>
-                <span className="minTemp accentColor">14°</span>
-              </div>
-            </li>
-            <li>
-              {" "}
-              <div className="forecastDay">Thurs</div>
-              <div className="forecastIcon">⛈️</div>
-              <div className="forecastTemperature">
-                <span className="maxTemp accentColor">26°</span>
-                <span className="minTemp accentColor">14°</span>
-              </div>
-            </li>
-            <li>
-              {" "}
-              <div className="forecastDay">Fri</div>
-              <div className="forecastIcon">🌦️</div>
-              <div className="forecastTemperature">
-                <span className="maxTemp accentColor">26°</span>
-                <span className="minTemp accentColor">14°</span>
-              </div>
-            </li>
-            <li>
-              {" "}
-              <div className="forecastDay">Sat</div>
-              <div className="forecastIcon">⛅️</div>
-              <div className="forecastTemperature">
-                <span className="maxTemp accentColor">26°</span>
-                <span className="minTemp accentColor">14°</span>
-              </div>
-            </li>
-            <li>
-              {" "}
-              <div className="forecastDay">Sun</div>
-              <div className="forecastIcon">🌤️</div>
-              <div className="forecastTemperature">
-                <span className="maxTemp accentColor">26°</span>
-                <span className="minTemp accentColor">14°</span>
-              </div>
-            </li>
-          </ul>
+        <div className="Forecast">
+          <div className="forecastContainer">
+            <ul className="forecast">
+              <li>
+                <div className="forecastDay">Wed</div>
+                <div className="forecastIcon">🌧️</div>
+                <div className="forecastTemperature">
+                  <span className="maxTemp accentColor">26°</span>
+                  <span className="minTemp accentColor">14°</span>
+                </div>
+              </li>
+              <li>
+                {" "}
+                <div className="forecastDay">Thurs</div>
+                <div className="forecastIcon">⛈️</div>
+                <div className="forecastTemperature">
+                  <span className="maxTemp accentColor">26°</span>
+                  <span className="minTemp accentColor">14°</span>
+                </div>
+              </li>
+              <li>
+                {" "}
+                <div className="forecastDay">Fri</div>
+                <div className="forecastIcon">🌦️</div>
+                <div className="forecastTemperature">
+                  <span className="maxTemp accentColor">26°</span>
+                  <span className="minTemp accentColor">14°</span>
+                </div>
+              </li>
+              <li>
+                {" "}
+                <div className="forecastDay">Sat</div>
+                <div className="forecastIcon">⛅️</div>
+                <div className="forecastTemperature">
+                  <span className="maxTemp accentColor">26°</span>
+                  <span className="minTemp accentColor">14°</span>
+                </div>
+              </li>
+              <li>
+                {" "}
+                <div className="forecastDay">Sun</div>
+                <div className="forecastIcon">🌤️</div>
+                <div className="forecastTemperature">
+                  <span className="maxTemp accentColor">26°</span>
+                  <span className="minTemp accentColor">14°</span>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
+        <hr />
+        <footer>
+          <p>
+            This project was coded by{" "}
+            <a href="https://www.linkedin.com/in/djcmichaels/">
+              Jenny D. Michaels
+            </a>{" "}
+            and is open-sourced on{" "}
+            <a href="https://github.com/cjsekdms37/weather-app-react">GitHub</a>{" "}
+            and hosten on{" "}
+            <a href="https://weather-app-react-djcm.netlify.app/">Netlify</a>.
+          </p>
+        </footer>
       </div>
-      <hr />
-      <footer>
-        <p>
-          This project was coded by{" "}
-          <a href="https://www.linkedin.com/in/djcmichaels/">
-            Jenny D. Michaels
-          </a>{" "}
-          and is open-sourced on{" "}
-          <a href="https://github.com/cjsekdms37/weather-app-react">GitHub</a>{" "}
-          and hosten on{" "}
-          <a href="https://weather-app-react-djcm.netlify.app/">Netlify</a>.
-        </p>
-      </footer>
-    </div>
-  );
+    );
+  } else {
+    const apiKey = `b6d6abf04ta9967430a746of97dac003`;
+    const apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.defaultCity}&key=${apiKey}&units=imperial`;
+    axios.get(apiUrl).then(showTheCity);
+    return "Loading...";
+  }
 }
