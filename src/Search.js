@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import axios from "axios";
+import FormattedDate from "./FormattedDate";
 
 export default function Search(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
@@ -10,7 +11,6 @@ export default function Search(props) {
 
   function showTheForecast(response) {
     let forecast = response.data.daily;
-    console.log(forecast);
   }
   function handleForecast(longitude, latitude) {
     let apiKey2 = `b6d6abf04ta9967430a746of97dac003`;
@@ -22,15 +22,15 @@ export default function Search(props) {
     let longitude = response.data.coordinates.longitude;
     let latitude = response.data.coordinates.latitude;
     setWeatherData({
+      city: response.data.city,
+      date: new Date(response.data.time * 1000),
+      description: response.data.condition.description,
+      humidity: response.data.temperature.humidity,
+      icon: response.data.condition.icon,
       ready: true,
       temperature: Math.round(response.data.temperature.current),
-      humidity: response.data.temperature.humidity,
       wind: response.data.wind.speed,
-      description: response.data.condition.description,
-      icon: response.data.condition.icon,
-      city: response.data.city,
     });
-
     handleForecast(longitude, latitude);
   }
 
@@ -67,7 +67,8 @@ export default function Search(props) {
             <h1>{weatherData.city}</h1>
             <ul>
               <li>
-                Wednesday 16:18, <span>{weatherData.description}</span>
+                <FormattedDate date={weatherData.date} />,{" "}
+                <span>{weatherData.description}</span>
               </li>
               <li>
                 Humidity:{" "}
