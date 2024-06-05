@@ -178,6 +178,10 @@ html {
   color: #47a7c6;
 }
 
+.App a:hover {
+  color: fuchsia;
+}
+
 .App hr {
   opacity: 0.1;
 }
