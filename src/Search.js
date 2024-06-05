@@ -6,6 +6,20 @@ import WeatherInfo from "./WeatherInfo";
 export default function Search(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState("");
+  const [forecastData, setForecastData] = useState({ ready: false });
+
+  function showTheForecast(response) {
+    let forecast = response.data.daily;
+    setForecastData({ forecast });
+  }
+
+  console.log({ forecastData });
+
+  function handleForecast(longitude, latitude) {
+    let apiKey2 = `b6d6abf04ta9967430a746of97dac003`;
+    let apiUrl2 = `https://api.shecodes.io/weather/v1/forecast?lat=${latitude}&lon=${longitude}&key=${apiKey2}&units=imperial`;
+    axios.get(apiUrl2).then(showTheForecast);
+  }
 
   function showTheCity(response) {
     let longitude = response.data.coordinates.longitude;
@@ -57,7 +71,7 @@ export default function Search(props) {
           </form>
         </div>
         <hr />
-        <WeatherInfo data={weatherData} />
+        <WeatherInfo data={weatherData} forecastData={forecastData} />
         <hr />
         <footer>
           <p>
