@@ -7,16 +7,6 @@ export default function Search(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState("");
 
-  function showTheForecast(response) {
-    let forecast = response.data.daily[0];
-    console.log(forecast);
-  }
-  function handleForecast(longitude, latitude) {
-    let apiKey2 = `b6d6abf04ta9967430a746of97dac003`;
-    let apiUrl2 = `https://api.shecodes.io/weather/v1/forecast?lat=${latitude}&lon=${longitude}&key=${apiKey2}&units=imperial`;
-    axios.get(apiUrl2).then(showTheForecast);
-  }
-
   function showTheCity(response) {
     let longitude = response.data.coordinates.longitude;
     let latitude = response.data.coordinates.latitude;
