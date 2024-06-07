@@ -73,13 +73,18 @@ export default function Search(props) {
         <footer>
           <p>
             This project was coded by{" "}
-            <a href="https://www.linkedin.com/in/djcmichaels/" target="_blank">
+            <a
+              href="https://www.linkedin.com/in/djcmichaels/"
+              target="_blank"
+              rel="noreferrer"
+            >
               Jenny D. Michaels
             </a>{" "}
             and is open-sourced on{" "}
             <a
               href="https://github.com/cjsekdms37/weather-app-react"
               target="_blank"
+              rel="noreferrer"
             >
               GitHub
             </a>{" "}
@@ -87,6 +92,7 @@ export default function Search(props) {
             <a
               href="https://weather-app-react-djcm.netlify.app/"
               target="_blank"
+              rel="noreferrer"
             >
               Netlify
             </a>
