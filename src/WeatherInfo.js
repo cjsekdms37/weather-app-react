@@ -4,37 +4,33 @@ import WeatherIcon from "./WeatherIcon";
 import WeatherTemperature from "./WeatherTemperature";
 
 export default function WeatherInfo(props) {
-  let forecastZeroMax = Math.round(
-    props.forecastData.forecast[0].temperature.maximum
+  const forecastZeroMax = Math.round(
+    props.forecastDatas[0].temperature.maximum
   );
-  let forecastZeroMin = Math.round(
-    props.forecastData.forecast[0].temperature.minimum
+  const forecastZeroMin = Math.round(
+    props.forecastDatas[0].temperature.minimum
   );
-  let forecastOneMax = Math.round(
-    props.forecastData.forecast[1].temperature.maximum
+  const forecastFirstMax = Math.round(
+    props.forecastDatas[1].temperature.maximum
   );
-  let forecastOneMin = Math.round(
-    props.forecastData.forecast[1].temperature.minimum
+  const forecastFirstMin = Math.round(
+    props.forecastDatas[1].temperature.minimum
   );
-  let forecastTwoMax = Math.round(
-    props.forecastData.forecast[2].temperature.maximum
+  const forecastTwoMax = Math.round(props.forecastDatas[2].temperature.maximum);
+  const forecastTwoMin = Math.round(props.forecastDatas[2].temperature.minimum);
+  const forecastThreeMax = Math.round(
+    props.forecastDatas[3].temperature.maximum
   );
-  let forecastTwoMin = Math.round(
-    props.forecastData.forecast[2].temperature.minimum
+  const forecastThreeMin = Math.round(
+    props.forecastDatas[3].temperature.minimum
   );
-  let forecastThreeMax = Math.round(
-    props.forecastData.forecast[3].temperature.maximum
+  const forecastFourMax = Math.round(
+    props.forecastDatas[4].temperature.maximum
   );
-  let forecastThreeMin = Math.round(
-    props.forecastData.forecast[3].temperature.minimum
+  const forecastFourMin = Math.round(
+    props.forecastDatas[4].temperature.minimum
   );
-  let forecastFourMax = Math.round(
-    props.forecastData.forecast[4].temperature.maximum
-  );
-  let forecastFourMin = Math.round(
-    props.forecastData.forecast[4].temperature.minimum
-  );
-  console.log(props.forecastData.forecast[0].temperature.maximum);
+
   return (
     <div className="WeatherInfo">
       <div className="cityInfo">
@@ -73,8 +69,8 @@ export default function WeatherInfo(props) {
               <div className="forecastDay">Thurs</div>
               <div className="forecastIcon">⛈️</div>
               <div className="forecastTemperature">
-                <span className="maxTemp accentColor">{forecastOneMax}°</span>
-                <span className="minTemp accentColor">{forecastOneMin}°</span>
+                <span className="maxTemp accentColor">{forecastFirstMax}°</span>
+                <span className="minTemp accentColor">{forecastFirstMin}°</span>
               </div>
             </li>
             <li>

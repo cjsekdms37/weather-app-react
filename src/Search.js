@@ -6,14 +6,11 @@ import WeatherInfo from "./WeatherInfo";
 export default function Search(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState("");
-  const [forecastData, setForecastData] = useState({ ready: false });
+  const [forecastData, setForecastData] = useState({});
 
   function showTheForecast(response) {
-    let forecast = response.data.daily;
-    setForecastData({ forecast });
+    setForecastData(response.data.daily);
   }
-
-  console.log({ forecastData });
 
   function handleForecast(longitude, latitude) {
     let apiKey2 = `b6d6abf04ta9967430a746of97dac003`;
@@ -71,7 +68,7 @@ export default function Search(props) {
           </form>
         </div>
         <hr />
-        <WeatherInfo data={weatherData} forecastData={forecastData} />
+        <WeatherInfo data={weatherData} forecastDatas={forecastData} />
         <hr />
         <footer>
           <p>
