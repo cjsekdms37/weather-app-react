@@ -49,7 +49,7 @@ export default function WeatherTemperature(props) {
           >
             ℉
           </a>{" "}
-          | <strong>℃</strong>
+          | <strong> ℃</strong>
         </span>
       </span>
     );

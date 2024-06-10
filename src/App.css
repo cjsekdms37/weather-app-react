@@ -176,10 +176,12 @@ html {
 
 .App a {
   color: #47a7c6;
+  text-decoration: none;
 }
 
 .App a:hover {
   color: fuchsia;
+  text-decoration: none;
 }
 
 .App hr {

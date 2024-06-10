@@ -6,10 +6,10 @@ import WeatherInfo from "./WeatherInfo";
 export default function Search(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState("");
-  const [forecastData, setForecastData] = useState({});
+  const [forecastData, setForecastData] = useState({ ready: false });
 
   function showTheForecast(response) {
-    setForecastData(response.data.daily);
+    setForecastData({ ...response.data.daily, ready: true });
   }
 
   function handleForecast(longitude, latitude) {
@@ -51,7 +51,7 @@ export default function Search(props) {
     axios.get(apiUrl).then(showTheCity);
   }
 
-  if (weatherData.ready) {
+  if (weatherData.ready && forecastData.ready) {
     return (
       <div>
         <div className="Search">
